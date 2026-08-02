@@ -1,0 +1,18 @@
+{
+  "provider": "ual",
+  "sources": [
+    "ual-authentication-api-openapi.yml",
+    "ual-orders-api-openapi.yml",
+    "ual-refunds-api-openapi.yml"
+  ],
+  "outputs": [
+    "ual-authentication-api-openapi.yml",
+    "ual-orders-api-openapi.yml",
+    "ual-refunds-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

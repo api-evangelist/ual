@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: derived
+source: https://developers.ualabis.com.ar/v2 + openapi/ual-bis-cobros-online-v2-openapi.yml
+standards:
+  - id: oauth2
+    conforms: partial
+    evidence: >-
+      Token issuance uses grant_type=client_credentials (OAuth2-style), but credentials are
+      carried in a custom JSON body (username + client_id + client_secret_id) against
+      /auth/token rather than an RFC 6749 token endpoint with form encoding; resource calls
+      use standard Bearer tokens.
+  - id: oidc
+    conforms: false
+    evidence: No OpenID Connect discovery or ID tokens documented.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use a custom JSON envelope {code, message, errors[]} with codes request_error /
+      response_error / api_error; application/problem+json is not used.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Cursor pagination on GET /orders via last_search_key + has_more_items, with limit
+      (default 10, must be < 50) and date/status filters.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key contract documented.
+  - id: webhooks
+    conforms: true
+    evidence: >-
+      Order and refund status notifications POSTed to a merchant notification_url, 200-ack,
+      up to 4 delivery attempts.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI profile claims published.
+  - id: psd2
+    conforms: false
+    evidence: Argentina/Mexico operations; no PSD2/open-banking claims published.
+  - id: json-api
+    conforms: false
+    evidence: Plain JSON bodies; no JSON:API media type.
+  - id: scim
+    conforms: false
+    evidence: Not applicable — no identity-provisioning surface.
+  - id: pci-dss
+    conforms: unknown
+    evidence: >-
+      Card data is handled on the Ualá-hosted checkout page (uala-checkout.com) and PANs are
+      returned masked (e.g. 501041******9330), but no public PCI DSS certification claim was
+      found on the developer portal.

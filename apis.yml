@@ -1,27 +1,154 @@
 aid: ual
 name: Ualá
-description: 'Ualá is a company surfaced as a portfolio company of bessemer-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Ualá is a Latin American fintech founded in Argentina in 2017 by Pierpaolo Barbieri, offering
+  a neobank super-app (prepaid and credit cards, savings, investments, loans, insurance) in
+  Argentina and Mexico, where it operates as Ualá ABC through the acquired ABC Capital bank.
+  Its merchant arm, Ualá Bis, provides payments acceptance — link de pago, POS, e-commerce
+  plugins, and the API Cobros Online v2, a checkout API with hosted payment links, order
+  retrieval and listing, refunds, and webhook status notifications, documented at
+  developers.ualabis.com.ar with official Node.js and PHP SDKs.
 url: https://raw.githubusercontent.com/api-evangelist/ual/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bessemer-venture-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 23
+  pass: local-v1
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Fintech
-apis: []
+- Payments
+- Banking
+- Neobank
+- Checkout
+- Ecommerce
+- Argentina
+- Mexico
+image: https://developers.ualabis.com.ar/logo-large.png
+apis:
+- aid: ual:ual-authentication-api
+  name: Ualá Authentication API
+  description: The Authentication API from Ualá — 1 operation(s) for authentication.
+  humanURL: https://developers.ualabis.com.ar/v2
+  baseURL: https://checkout.developers.ar.ua.la/v2/api
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/ual-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2/authentication/create
+- aid: ual:ual-orders-api
+  name: Ualá Orders API
+  description: Payment orders (checkout)
+  humanURL: https://developers.ualabis.com.ar/v2
+  baseURL: https://checkout.developers.ar.ua.la/v2/api
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/ual-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2/authentication/create
+- aid: ual:ual-refunds-api
+  name: Ualá Refunds API
+  description: Refunds of approved orders
+  humanURL: https://developers.ualabis.com.ar/v2
+  baseURL: https://checkout.developers.ar.ua.la/v2/api
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/ual-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2
+  - type: Documentation
+    url: https://developers.ualabis.com.ar/v2/authentication/create
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/ual-agentic-access.yml
 - type: Website
-  url: https://www.uala-abc.com.mx/
+  url: https://www.uala.com.ar/
+- type: DeveloperPortal
+  url: https://developers.ualabis.com.ar/
+- type: Documentation
+  url: https://developers.ualabis.com.ar/v2
+- type: APIReference
+  url: https://developers.ualabis.com.ar/v2
+- type: GettingStarted
+  url: https://developers.ualabis.com.ar/
+- type: GitHubOrganization
+  url: https://github.com/Uala-Developers
+- type: Blog
+  url: https://blog.uala.com.ar/
+- type: Support
+  url: https://www.uala.com.ar/preguntas-frecuentes
+- type: Pricing
+  url: https://www.uala.com.ar/costos
+- type: Login
+  url: https://web.ualabis.com.ar/
+- type: TermsOfService
+  url: https://www.uala.com.ar/cgu
+- type: PrivacyPolicy
+  url: https://www.uala.com.ar/privacidad
+- type: ChangeLog
+  url: changelog/ual-changelog.yml
+- type: Webhooks
+  url: asyncapi/ual-webhooks.yml
+- type: ErrorCatalog
+  url: errors/ual-problem-types.yml
+- type: Conventions
+  url: conventions/ual-conventions.yml
+- type: Sandbox
+  url: sandbox/ual-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/ual-lifecycle.yml
+- type: Conformance
+  url: conformance/ual-conformance.yml
+- type: Packages
+  url: packages/ual-packages.yml
+- type: SDKs
+  url: packages/ual-packages.yml
+- type: MCPServer
+  url: mcp/ual-mcp.yml
+- type: LLMsTxt
+  url: llms/ual-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/ual-data-model.yml
+- type: Components
+  url: components/ual-components.yml
+- type: Authentication
+  url: authentication/ual-authentication.yml
+- type: DomainSecurity
+  url: security/ual-domain-security.yml

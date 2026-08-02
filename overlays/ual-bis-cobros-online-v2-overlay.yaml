@@ -1,0 +1,39 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ualá Bis API Cobros Online v2
+  version: 1.0.0
+extends: openapi/ual-bis-cobros-online-v2-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: ual
+      x-apievangelist-artifacts:
+        errors: errors/ual-problem-types.yml
+        conventions: conventions/ual-conventions.yml
+        webhooks: asyncapi/ual-webhooks.yml
+        sandbox: sandbox/ual-sandbox.yml
+        data-model: data-model/ual-data-model.yml
+  - target: $.paths['/orders'].get
+    update:
+      x-pagination:
+        style: cursor
+        cursor_param: last_search_key
+        more_field: has_more_items
+        default_limit: 10
+        max_limit: 50
+  - target: $.paths['/orders/{uuid}/refund'].post
+    update:
+      x-preconditions:
+        - Order status must be APPROVED
+        - No refund already in progress
+        - Order less than 90 days old
+        - Order must belong to API Checkout v2
+  - target: $.paths['/checkout'].post
+    update:
+      x-amount-bounds:
+        minimum: '25.00'
+        maximum: '9999999.00'
+        format: string, positive numbers with a single decimal point

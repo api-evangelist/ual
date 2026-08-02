@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/ual-bis-cobros-online-v2-openapi.yml
+notes: >-
+  No official Ualá / Ualá Bis MCP server was found (developer portal, GitHub org
+  Uala-Developers, npm). Candidate tool list derived from the documented Cobros Online v2
+  operations.
+server:
+  name: ual
+  transport: http
+tools:
+  - name: create_token
+    description: Create the bearer access token required by all Ualá Bis endpoints (client_credentials).
+    source_operation: openapi/ual-bis-auth-v2-openapi.yml#createToken
+  - name: create_order
+    description: Create a payment order and get the hosted checkout link for the buyer.
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#createOrder
+  - name: get_order
+    description: Retrieve a payment order by uuid, including status, customer card and status changelog.
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#getOrder
+  - name: list_orders
+    description: List orders with date/status filters and cursor pagination (last_search_key).
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#listOrders
+  - name: refund_order
+    description: Refund an APPROVED order less than 90 days old (result arrives by webhook).
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#refundOrder

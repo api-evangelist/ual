@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2
+format: custom-envelope
+envelope:
+  description: >-
+    Ualá Bis API Cobros Online v2 errors use a JSON envelope with a machine code, a message,
+    and an optional errors[] array of field-level validation messages. Not RFC 9457
+    (application/problem+json is not used).
+  fields:
+    code: 'Machine-readable error class: request_error | response_error | api_error'
+    message: Human-readable summary
+    errors: Array of field-level validation messages (400 responses)
+problems:
+  - status: 400
+    code: request_error
+    title: Invalid request payload
+    detail: >-
+      Field-level validation failed. Documented validations include: amount must have only
+      positive numbers and a single point; minimum amount 25.00; maximum amount 9999999.00;
+      check notification_url / callback_fail / description / external_reference attribute
+      values; provide a valid token with active client_id.
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#createOrder
+  - status: 400
+    code: request_error
+    title: Invalid query string request payload
+    detail: >-
+      List-orders filter validation failed. Documented validations include: the limit must be
+      less than 50; provide a valid sort order (ascending or descending); provide a valid
+      status; provide valid from_date / to_date (YYYY-MM-DD); provide a valid last_search_key.
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#listOrders
+  - status: 400
+    code: request_error
+    title: The order is not valid to refund
+    detail: >-
+      Refund pre-conditions failed. Documented reasons: the refund period (90 days) has
+      expired; the order has a refund in progress; the order must be from API Checkout v2; the
+      order must be approved; send a valid order amount value.
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#refundOrder
+  - status: 401
+    title: Unauthorized
+    detail: Missing or invalid credentials ("Unauthorized" message, no code field).
+  - status: 401
+    code: response_error
+    title: Invalid account
+    detail: Invalid account. Check your token value.
+  - status: 403
+    title: Token expired / explicit deny
+    detail: User is not authorized to access this resource with an explicit deny.
+  - status: 403
+    code: request_error
+    title: Not allowed
+    detail: You are not allowed to perform this action (missing permissions on refunds).
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#refundOrder
+  - status: 404
+    code: response_error
+    title: No record found
+    detail: Order not found (refunds).
+    source_operation: openapi/ual-bis-cobros-online-v2-openapi.yml#refundOrder
+  - status: 500
+    code: api_error
+    title: Internal error
+    detail: Something bad happened. Please try again.

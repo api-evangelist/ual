@@ -1,0 +1,19 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Ualá Bis Authentication API v2
+  version: 1.0.0
+extends: openapi/ual-bis-auth-v2-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: ual
+      x-apievangelist-notes: >-
+        Client-credentials style token issuance carried in a JSON body (username, client_id,
+        client_secret_id) rather than RFC 6749 form encoding. Tokens are used as Bearer tokens
+        against checkout.developers.ar.ua.la.
+  - target: $.paths['/auth/token'].post
+    update:
+      x-credential-issuance: Welcome email + Ualá mobile/web app (test and production credentials)

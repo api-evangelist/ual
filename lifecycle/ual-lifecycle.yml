@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://developers.ualabis.com.ar/v2
+  previous_versions_docs: https://developers.ualabis.com.ar (section "Versiones anteriores")
+  notes: >-
+    API Cobros Online v2 is the current version. The docs keep previous versions documented
+    under "Versiones anteriores" and recommend starting new integrations on v2 and migrating
+    existing ones — certain functionality (e.g. refunds) is only compatible with v2.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is published;
+    the practical signal is the "migrate to v2 for more support" guidance and v2-only features.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+whats_new: https://developers.ualabis.com.ar/whats-new

@@ -1,0 +1,62 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ual-bis-cobros-online-v2-openapi.yml
+entities:
+  - name: Order
+    id_field: uuid
+    id_format: uuid
+    description: >-
+      A payment order created via POST /checkout. Lifecycle statuses: PENDING → PROCESSED →
+      APPROVED (or REJECTED), and REFUNDED after a refund. Carries merchant correlation via
+      external_reference and a hosted checkout link.
+  - name: Customer
+    description: Buyer attached to a processed order (name + card).
+  - name: Card
+    description: Masked card used to pay (holder_name, issuer, masked pan, installments).
+  - name: Installments
+    description: Installment plan on the card payment (number, total, financial_cost, value_per_installment).
+  - name: Commission
+    description: Commission line on an APPROVED order (amount, percentage, type).
+  - name: Tax
+    description: Withheld tax line on an APPROVED order (percentage, held_tax, type).
+  - name: StatusChange
+    description: Changelog entry recording an order status transition (old_status → new_status, updated_date).
+  - name: Refund
+    description: >-
+      Refund of an APPROVED order (POST /orders/{uuid}/refund). Response status INITIATED;
+      final result delivered by webhook as REFUNDED or NOT_REFUNDED.
+  - name: Notification
+    description: Webhook payload (uuid, external_reference, status, created_date, api_version).
+relationships:
+  - from: Order
+    to: Customer
+    type: has_one
+    via: customer
+  - from: Customer
+    to: Card
+    type: has_one
+    via: card
+  - from: Card
+    to: Installments
+    type: has_one
+    via: installments
+  - from: Order
+    to: Commission
+    type: has_many
+    via: commissions
+  - from: Order
+    to: Tax
+    type: has_many
+    via: taxes
+  - from: Order
+    to: StatusChange
+    type: has_many
+    via: changelog
+  - from: Refund
+    to: Order
+    type: belongs_to
+    via: uuid (path parameter)
+  - from: Notification
+    to: Order
+    type: belongs_to
+    via: uuid

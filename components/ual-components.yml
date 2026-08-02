@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/other-stores/options
+families:
+  - name: Hosted checkout
+    description: >-
+      The Cobros Online v2 API is checkout-hosted by design: creating an order returns a
+      unique links.checkout_link on uala-checkout.com where the buyer selects the payment
+      method (credit/debit card; QR announced). Card entry, Luhn validation, installment
+      plans, and success/fail redirects happen on the Ualá-hosted surface — no card data
+      touches the merchant.
+    kind: hosted-surface
+    docs: https://developers.ualabis.com.ar/v2/orders/create
+  - name: E-commerce platform plugins (Otras tiendas)
+    description: >-
+      No-code / low-code store integrations that activate Ualá Bis as a payment method.
+    kind: platform-plugins
+    docs: https://developers.ualabis.com.ar/other-stores/options
+    components:
+      - name: WooCommerce plugin
+        docs: https://developers.ualabis.com.ar/other-stores/wooCommerce
+      - name: Magento module
+        docs: https://developers.ualabis.com.ar/other-stores/magento
+        package: https://packagist.org/packages/uala-bis/ualabis-magento
+        repository: https://github.com/Uala-Developers/ualabis-magento
+      - name: Tienda Nube integration
+        docs: https://www.ualabis.com.ar/tiendanube
+      - name: Empretienda integration
+        docs: https://www.ualabis.com.ar/empretienda
+notes: >-
+  No embeddable JS element/web-component library (Stripe-Elements style) is published; the
+  client-side surface is the hosted checkout plus platform plugins.

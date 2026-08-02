@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: ual-create-checkout-order.md
+    name: Create a Ualá Bis checkout order and track it to approval
+    api: openapi/ual-bis-cobros-online-v2-openapi.yml
+    operations: [createToken, createOrder, getOrder, listOrders]
+  - file: ual-refund-order.md
+    name: Refund a Ualá Bis order and confirm the result
+    api: openapi/ual-bis-cobros-online-v2-openapi.yml
+    operations: [createToken, getOrder, refundOrder]

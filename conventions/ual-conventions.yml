@@ -1,0 +1,71 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2
+api: Ualá Bis API Cobros Online v2
+authentication:
+  style: bearer-token
+  detail: >-
+    Every endpoint requires an Authorization: Bearer <token> header. Tokens are minted from
+    POST https://auth.developers.ar.ua.la/v2/api/auth/token with a JSON body carrying username,
+    client_id, client_secret_id and grant_type=client_credentials. Test and production
+    credentials are issued in the Ualá Bis welcome email and in the mobile/web apps.
+  cross_link: authentication/ual-authentication.yml
+idempotency:
+  supported: false
+  detail: No idempotency-key header or replay-protection contract is documented.
+pagination:
+  style: cursor
+  params: [limit, fromDate, toDate, status, last_search_key]
+  response_fields: [last_search_key, has_more_items, orders]
+  defaults:
+    limit: 10
+  limits:
+    max_limit: 'limit must be less than 50'
+  detail: >-
+    GET /orders returns 10 orders by default. Pass last_search_key from the previous response
+    to fetch the next page; has_more_items signals whether more remain.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+  detail: >-
+    No free-form metadata object; external_reference (string) is the merchant correlation
+    field on orders.
+request_tracing:
+  supported: false
+  detail: No request-id header is documented.
+versioning:
+  scheme: uri-path
+  current: v2
+  detail: >-
+    Version is carried in the base URL path (/v2/api). Previous versions remain documented
+    under "Versiones anteriores"; some functionality (e.g. refunds) is v2-only and the docs
+    recommend migrating existing integrations.
+  cross_link: lifecycle/ual-lifecycle.yml
+error_envelope:
+  shape: '{ code, message, errors[] }'
+  codes: [request_error, response_error, api_error]
+  content_type: application/json
+  cross_link: errors/ual-problem-types.yml
+rate_limit_signaling:
+  documented: false
+webhooks:
+  style: http-post-to-notification-url
+  acknowledge: HTTP 200
+  retries: >-
+    A non-200 response triggers up to 3 additional delivery attempts (4 total). A
+    failed-notifications query endpoint is referenced for notifications that exhaust retries.
+  events:
+    order: [APPROVED, PROCESSED, REJECTED]
+    refund: [REFUNDED, NOT_REFUNDED]
+environments:
+  production:
+    auth: https://auth.developers.ar.ua.la/v2/api
+    checkout: https://checkout.developers.ar.ua.la/v2/api
+  test:
+    auth: https://auth.stage.developers.ar.ua.la/v2/api
+    checkout: https://checkout.stage.developers.ar.ua.la/v2/api
+amount_format:
+  detail: >-
+    Amounts are sent as strings with only positive numbers and a single decimal point.
+    Documented bounds on checkout: minimum 25.00, maximum 9999999.00 (ARS).

@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2/authentication/create
+docs: https://developers.ualabis.com.ar/v2/authentication/create
+summary:
+  types:
+  - http
+  oauth2_flows:
+  - client_credentials (custom JSON body, non-RFC 6749 encoding)
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    All Ualá Bis Cobros Online v2 endpoints require Authorization: Bearer <token>. The token
+    is created via POST /auth/token on https://auth.developers.ar.ua.la/v2/api (test:
+    https://auth.stage.developers.ar.ua.la/v2/api) with a JSON body of username, client_id,
+    client_secret_id and grant_type=client_credentials — an OAuth2-style client-credentials
+    exchange carried in custom JSON rather than RFC 6749 form encoding. Credentials for both
+    test and production are issued in the Ualá Bis welcome email and shown in the mobile/web
+    apps; they are private and Ualá staff never request them.
+  token_endpoint:
+    production: https://auth.developers.ar.ua.la/v2/api/auth/token
+    test: https://auth.stage.developers.ar.ua.la/v2/api/auth/token
+  sources:
+  - openapi/ual-bis-cobros-online-v2-openapi.yml
+  - openapi/ual-bis-auth-v2-openapi.yml
+notes: >-
+  No API-key or OpenID Connect surface; no OAuth scopes are documented (scopes/ intentionally
+  omitted).

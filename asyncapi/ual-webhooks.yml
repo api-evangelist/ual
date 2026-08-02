@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2/orders/create/webhook
+type: Webhooks
+detail: >-
+  Ualá Bis documents webhook notifications for the Cobros Online v2 API but publishes no
+  AsyncAPI document. Notifications are HTTP POSTs to the merchant-supplied notification_url.
+  A 200 response acknowledges receipt; any other status triggers up to 3 additional attempts
+  (4 total). A failed-notifications query endpoint is referenced for orders whose
+  notifications exhaust all retries.
+webhooks:
+  - name: order-status-notification
+    docs: https://developers.ualabis.com.ar/v2/orders/create/webhook
+    trigger: Order status change for orders created with a notification_url
+    statuses:
+      - APPROVED   # payment successful, funds disbursed to the Ualá account
+      - PROCESSED  # order processed successfully, disbursement pending
+      - REJECTED   # payment rejected
+    payload_fields:
+      uuid: Unique order identifier
+      external_reference: Merchant order reference
+      status: Order status
+      created_date: Order creation date (ISO 8601)
+      api_version: Ualá Bis API version ("2")
+    delivery:
+      method: POST
+      acknowledge: HTTP 200
+      retries: 3 additional attempts after a failed first delivery
+  - name: refund-status-notification
+    docs: https://developers.ualabis.com.ar/v2/refunds/create/webhook
+    trigger: Refund result for refunds created with a notification_url
+    statuses:
+      - REFUNDED      # refund completed; buyer sees funds per their bank's timing
+      - NOT_REFUNDED  # refund failed validation
+    payload_fields:
+      uuid: Unique order identifier
+      external_reference: Merchant order reference
+      status: Refund status
+      created_date: Refund creation date (ISO 8601)
+      api_version: Ualá Bis API version ("2")
+    delivery:
+      method: POST
+      acknowledge: HTTP 200
+security:
+  signature: >-
+    No webhook signature/verification scheme is documented; merchants must expose a public
+    POST endpoint.

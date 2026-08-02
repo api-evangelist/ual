@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2/authentication/create
+sandbox:
+  available: true
+  name: Test (stage) environment
+  detail: >-
+    Ualá Bis publishes parallel test (stage) hosts for the Cobros Online v2 API. Access
+    credentials for both the test and production environments are delivered in the Ualá Bis
+    welcome email and are visible in the mobile and web applications; they can be requested
+    from the Ualá app/web under Ualá Bis. Credentials are private and Ualá staff never ask
+    for them.
+  environments:
+    - name: production
+      auth_base_url: https://auth.developers.ar.ua.la/v2/api
+      checkout_base_url: https://checkout.developers.ar.ua.la/v2/api
+    - name: test
+      auth_base_url: https://auth.stage.developers.ar.ua.la/v2/api
+      checkout_base_url: https://checkout.stage.developers.ar.ua.la/v2/api
+  credentials:
+    how_issued: Welcome email + Ualá mobile/web app (Ualá Bis section)
+    separation: Distinct credentials for test and production
+  test_values:
+    published: false
+    note: >-
+      No public magic test cards, test amounts, or simulator values are documented; testing
+      uses the stage hosts with the issued test credentials.
+  test_clocks: false
+  fixture_tooling: none-documented

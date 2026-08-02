@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/sdks + https://github.com/Uala-Developers + registry probes
+packages:
+  - language: javascript
+    registry: npm
+    name: ualabis-nodejs
+    url: https://www.npmjs.com/package/ualabis-nodejs
+    install: npm install ualabis-nodejs
+    repository: https://github.com/Uala-Developers/ualabis-nodejs
+    version: 1.0.1
+    description: Ualá Bis SDK Node.js
+    official: true
+  - language: php
+    registry: packagist
+    name: uala-bis/ualabis-php
+    url: https://packagist.org/packages/uala-bis/ualabis-php
+    install: composer require uala-bis/ualabis-php
+    repository: https://github.com/Uala-Developers/ualabis-php
+    description: Official Ualá Bis PHP SDK
+    official: true
+  - language: php
+    registry: packagist
+    name: uala-bis/ualabis-magento
+    url: https://packagist.org/packages/uala-bis/ualabis-magento
+    install: composer require uala-bis/ualabis-magento
+    repository: https://github.com/Uala-Developers/ualabis-magento
+    description: Official Ualá Bis Magento module (e-commerce plugin, not a general SDK)
+    official: true
+notes: >-
+  The SDKs page (developers.ualabis.com.ar/sdks) lists Node.js, PHP, and Java SDKs (Python
+  marked "Próximamente"/coming soon), but no first-party Java artifact was found on Maven
+  Central (search "ualabis" returned no results, probed 2026-07-21) and no Python package
+  exists on PyPI (404). GitHub org Uala-Developers ships exactly three repos: ualabis-nodejs,
+  ualabis-php, ualabis-magento.

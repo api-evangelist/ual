@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.ualabis.com.ar/v2 ("¿Qué hay de nuevo?" + "Nueva funcionalidad" banner)
+scheme: docs-page
+current_version: '2'
+dated_entries: false
+notes: >-
+  Ualá Bis publishes a "¿Qué hay de nuevo?" (What's new) page and in-docs banners rather than
+  a dated changelog. Entries below are undated, captured from the live docs.
+entries:
+  - version: '2'
+    date: null
+    breaking: false
+    highlights:
+      - 'New refund functionality — POST /orders/{uuid}/refund plus a refund-status webhook
+        (announced as "Nueva funcionalidad: crear una devolución de venta").'
+  - version: '2'
+    date: null
+    breaking: true
+    highlights:
+      - New major version of API Cobros Online; some functionality is v2-only and existing
+        integrations are advised to migrate.
+      - Payment methods — buyers can pay with credit and debit cards (QR announced as coming).
+      - Faster notifications of integration errors.
+      - Leaner requests — fewer required fields, better validation and error precision.
+      - Performance and security improvements.
