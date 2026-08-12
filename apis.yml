@@ -94,6 +94,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/ual-bis-auth-v2-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/ual-agentic-access.yml
 - type: Website
