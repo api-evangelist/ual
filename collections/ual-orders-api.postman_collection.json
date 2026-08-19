@@ -1,0 +1,905 @@
+{
+  "item": [
+    {
+      "id": "ff6886a0-3c2d-4ea5-aea7-ec214a0b4fc8",
+      "name": "Orders",
+      "description": {
+        "content": "Payment orders (checkout)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66b305d2-11ec-4190-9880-13cd7e30d2fc",
+          "name": "Crear orden (create a payment order)",
+          "request": {
+            "name": "Crear orden (create a payment order)",
+            "description": {
+              "content": "Creates a payment order and returns a unique checkout link where the buyer selects a payment method. Requires a bearer access token from the auth API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "checkout"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"description\": \"<string>\",\n  \"callback_fail\": \"<string>\",\n  \"callback_success\": \"<string>\",\n  \"notification_url\": \"<string>\",\n  \"external_reference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b663555-9b77-4747-bea4-1b16f7cde1ad",
+              "name": "Order created; response includes the hosted checkout link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"3005\",\n  \"description\": \"Descripción de la venta\",\n  \"callback_fail\": \"https://www.google.com/search?q=failed\",\n  \"callback_success\": \"https://www.google.com/search?q=success\",\n  \"notification_url\": \"https://www.notificationurl.com\",\n  \"external_reference\": \"external_reference\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"613d8938-8dab-41fd-9905-09d52e5312d0\",\n  \"amount\": 3005,\n  \"status\": \"PENDING\",\n  \"external_reference\": \"09d52e5312d009d52e5312d09905\",\n  \"links\": {\n    \"checkout_link\": \"https://uala-checkout.com/orders/66fe0b6e3c4cd5253c65a80e547\",\n    \"success\": \"https://www.google.com/search?q=success\",\n    \"failed\": \"https://www.google.com/search?q=failed\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84de97d4-4670-4f47-8407-5bafc31fe29b",
+              "name": "Invalid request payload or query string.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"3005\",\n  \"description\": \"Descripción de la venta\",\n  \"callback_fail\": \"https://www.google.com/search?q=failed\",\n  \"callback_success\": \"https://www.google.com/search?q=success\",\n  \"notification_url\": \"https://www.notificationurl.com\",\n  \"external_reference\": \"external_reference\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"request_error\",\n  \"message\": \"Invalid request payload\",\n  \"errors\": [\n    \"Invalid amount value. Amount must have only positive numbers and a single point\",\n    \"Invalid amount value. Minimum amount is 25.00\",\n    \"Invalid amount value. Maximum amount is 9999999.00\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a35735ed-814a-4b7d-8b18-f14a5d4b346b",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"3005\",\n  \"description\": \"Descripción de la venta\",\n  \"callback_fail\": \"https://www.google.com/search?q=failed\",\n  \"callback_success\": \"https://www.google.com/search?q=success\",\n  \"notification_url\": \"https://www.notificationurl.com\",\n  \"external_reference\": \"external_reference\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9d4bb96-356b-46ba-914e-8112b4bb806c",
+              "name": "Expired token / explicit deny.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"3005\",\n  \"description\": \"Descripción de la venta\",\n  \"callback_fail\": \"https://www.google.com/search?q=failed\",\n  \"callback_success\": \"https://www.google.com/search?q=success\",\n  \"notification_url\": \"https://www.notificationurl.com\",\n  \"external_reference\": \"external_reference\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"User is not authorized to access this resource with an explicit deny\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dbc8d36-3897-4f7a-8a9e-444ebffd9bef",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"3005\",\n  \"description\": \"Descripción de la venta\",\n  \"callback_fail\": \"https://www.google.com/search?q=failed\",\n  \"callback_success\": \"https://www.google.com/search?q=success\",\n  \"notification_url\": \"https://www.notificationurl.com\",\n  \"external_reference\": \"external_reference\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"api_error\",\n  \"message\": \"Something bad happened. Please try again\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb6ca40c-8789-4955-a5ce-08738571f1d0",
+          "name": "Obtener orden (get an order)",
+          "request": {
+            "name": "Obtener orden (get an order)",
+            "description": {
+              "content": "Retrieves a payment order by its identifier. Order status is one of PENDING, PROCESSED, APPROVED, REJECTED, REFUNDED. Only APPROVED orders carry populated taxes and commissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique order identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "574b627f-c007-4479-b070-d5845f854940",
+              "name": "The order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uuid\": \"string\",\n  \"amount\": 8599.946093294064,\n  \"status\": \"PENDING\",\n  \"external_reference\": \"string\",\n  \"commissions\": [\n    {\n      \"amount\": \"string\",\n      \"percentage\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"amount\": \"string\",\n      \"percentage\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"taxes\": [\n    {\n      \"percentage\": \"string\",\n      \"held_tax\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"percentage\": \"string\",\n      \"held_tax\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"customer\": {\n    \"name\": \"string\",\n    \"card\": {\n      \"holder_name\": \"string\",\n      \"issuer\": \"string\",\n      \"pan\": \"string\",\n      \"installments\": {\n        \"number\": 4703,\n        \"total\": 2276.1555441323435,\n        \"financial_cost\": 2214.4144466328444,\n        \"value_per_installment\": 4313.883785279669\n      }\n    }\n  },\n  \"changelog\": [\n    {\n      \"new_status\": \"string\",\n      \"old_status\": \"string\",\n      \"updated_date\": \"1985-12-11T18:20:51.901Z\"\n    },\n    {\n      \"new_status\": \"string\",\n      \"old_status\": \"string\",\n      \"updated_date\": \"1995-04-13T12:25:20.152Z\"\n    }\n  ],\n  \"created_date\": \"1952-12-31T06:10:29.604Z\",\n  \"updated_date\": \"1980-09-03T06:06:29.591Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "114a88da-357b-4e08-a9a6-3f59fe34d075",
+              "name": "Invalid request payload or query string.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"request_error\",\n  \"message\": \"Invalid request payload\",\n  \"errors\": [\n    \"Invalid amount value. Amount must have only positive numbers and a single point\",\n    \"Invalid amount value. Minimum amount is 25.00\",\n    \"Invalid amount value. Maximum amount is 9999999.00\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59d5c31d-8a98-40fc-924d-f72a42cb29aa",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45bfc0fd-ee7e-4116-982c-2e2377421336",
+              "name": "Expired token / explicit deny.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"User is not authorized to access this resource with an explicit deny\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fca27bc3-01f7-4a6b-a800-4c689d96a460",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique order identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"api_error\",\n  \"message\": \"Something bad happened. Please try again\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5797ee2f-cda9-456d-b961-e65f1147facc",
+          "name": "Obtener órdenes (list orders by filter)",
+          "request": {
+            "name": "Obtener órdenes (list orders by filter)",
+            "description": {
+              "content": "Lists orders for the account with optional filters. Returns 10 orders by default; the limit must be less than 50. Pagination is cursor-based via last_search_key + has_more_items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of orders to return (default 10; must be less than 50)."
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<date>",
+                  "description": "Order-creation start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<date>",
+                  "description": "Order-creation end date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Order status filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_search_key",
+                  "value": "<string>",
+                  "description": "Cursor returned by a previous page to fetch the next page of orders."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe6e84a8-c35b-4e61-8255-7fd09b5c642f",
+              "name": "A page of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_search_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"last_search_key\": \"string\",\n  \"has_more_items\": true,\n  \"orders\": [\n    {\n      \"uuid\": \"string\",\n      \"amount\": 3676.184069592725,\n      \"status\": \"PENDING\",\n      \"external_reference\": \"string\",\n      \"commissions\": [\n        {\n          \"amount\": \"string\",\n          \"percentage\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"amount\": \"string\",\n          \"percentage\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"taxes\": [\n        {\n          \"percentage\": \"string\",\n          \"held_tax\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"percentage\": \"string\",\n          \"held_tax\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"customer\": {\n        \"name\": \"string\",\n        \"card\": {\n          \"holder_name\": \"string\",\n          \"issuer\": \"string\",\n          \"pan\": \"string\",\n          \"installments\": {\n            \"number\": 9445,\n            \"total\": 7709.791973028193,\n            \"financial_cost\": 4647.236888398302,\n            \"value_per_installment\": 5427.537942115632\n          }\n        }\n      },\n      \"changelog\": [\n        {\n          \"new_status\": \"string\",\n          \"old_status\": \"string\",\n          \"updated_date\": \"1952-05-08T23:45:36.127Z\"\n        },\n        {\n          \"new_status\": \"string\",\n          \"old_status\": \"string\",\n          \"updated_date\": \"1983-02-26T06:55:53.024Z\"\n        }\n      ],\n      \"created_date\": \"2006-04-16T06:13:08.538Z\",\n      \"updated_date\": \"1969-02-19T03:42:11.837Z\"\n    },\n    {\n      \"uuid\": \"string\",\n      \"amount\": 3056.2492042990484,\n      \"status\": \"REFUNDED\",\n      \"external_reference\": \"string\",\n      \"commissions\": [\n        {\n          \"amount\": \"string\",\n          \"percentage\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"amount\": \"string\",\n          \"percentage\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"taxes\": [\n        {\n          \"percentage\": \"string\",\n          \"held_tax\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"percentage\": \"string\",\n          \"held_tax\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"customer\": {\n        \"name\": \"string\",\n        \"card\": {\n          \"holder_name\": \"string\",\n          \"issuer\": \"string\",\n          \"pan\": \"string\",\n          \"installments\": {\n            \"number\": 5275,\n            \"total\": 9566.00045716695,\n            \"financial_cost\": 6468.537272128112,\n            \"value_per_installment\": 3816.262861746368\n          }\n        }\n      },\n      \"changelog\": [\n        {\n          \"new_status\": \"string\",\n          \"old_status\": \"string\",\n          \"updated_date\": \"1989-04-28T20:31:32.682Z\"\n        },\n        {\n          \"new_status\": \"string\",\n          \"old_status\": \"string\",\n          \"updated_date\": \"2010-03-05T15:54:56.355Z\"\n        }\n      ],\n      \"created_date\": \"1965-05-04T17:12:53.931Z\",\n      \"updated_date\": \"1957-01-17T03:00:14.351Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8fca61e-abae-44d0-891d-808448a6f805",
+              "name": "Invalid request payload or query string.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_search_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"request_error\",\n  \"message\": \"Invalid request payload\",\n  \"errors\": [\n    \"Invalid amount value. Amount must have only positive numbers and a single point\",\n    \"Invalid amount value. Minimum amount is 25.00\",\n    \"Invalid amount value. Maximum amount is 9999999.00\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb7657eb-729f-4957-a0b3-76a9a7023dab",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_search_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72225b36-47da-4af2-a349-4b8204438454",
+              "name": "Expired token / explicit deny.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_search_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"User is not authorized to access this resource with an explicit deny\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ee74096-32eb-4a29-820e-5e219606a704",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_search_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"api_error\",\n  \"message\": \"Something bad happened. Please try again\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auth.developers.ar.ua.la/v2/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "123d2d6f-6bcc-4c1e-a979-27cf006705a9",
+    "name": "Ualá Bis API v2 Authentication Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Token issuance for the Ualá Bis API Cobros Online v2. All integrations require generating an access token via a client-credentials style request (username, client_id, client_secret_id, grant_type). Credentials for both test and production environments are delivered in the Ualá Bis welcome email and in the mobile/web applications. Generated by API Evangelist from the published documentation — the provider does not publish a machine-readable spec.\n\nContact Support:\n Email: developers.ualabis@uala.com.ar",
+      "type": "text/plain"
+    }
+  }
+}

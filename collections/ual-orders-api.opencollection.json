@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ualá Bis API v2 Authentication Orders API",
+    "version": "2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Crear orden (create a payment order)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.developers.ar.ua.la/v2/api/checkout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a payment order and returns a unique checkout link where the buyer selects a payment method. Requires a bearer access token from the auth API."
+        },
+        {
+          "info": {
+            "name": "Obtener orden (get an order)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.developers.ar.ua.la/v2/api/orders/:uuid",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique order identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves a payment order by its identifier. Order status is one of PENDING, PROCESSED, APPROVED, REJECTED, REFUNDED. Only APPROVED orders carry populated taxes and commissions."
+        },
+        {
+          "info": {
+            "name": "Obtener órdenes (list orders by filter)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auth.developers.ar.ua.la/v2/api/orders",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of orders to return (default 10; must be less than 50)."
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Order-creation start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query",
+                "description": "Order-creation end date (YYYY-MM-DD)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Order status filter."
+              },
+              {
+                "name": "last_search_key",
+                "value": "",
+                "type": "query",
+                "description": "Cursor returned by a previous page to fetch the next page of orders."
+              }
+            ]
+          },
+          "docs": "Lists orders for the account with optional filters. Returns 10 orders by default; the limit must be less than 50. Pagination is cursor-based via last_search_key + has_more_items."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

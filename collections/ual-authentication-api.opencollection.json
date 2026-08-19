@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ualá Bis API v2 Authentication API",
+    "version": "2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Crear token (create access token)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.developers.ar.ua.la/v2/api/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates the bearer access token required by every Ualá Bis Cobros Online v2 endpoint, using a client_credentials grant carried in a JSON body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

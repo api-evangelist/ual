@@ -1,0 +1,408 @@
+{
+  "item": [
+    {
+      "id": "b8195296-eacf-4ef4-acd1-a6cf9ef01862",
+      "name": "Refunds",
+      "description": {
+        "content": "Refunds of approved orders",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d38d0acf-4ac5-4721-820c-bd64c37fd23c",
+          "name": "Crear devolución (refund an approved order)",
+          "request": {
+            "name": "Crear devolución (refund an approved order)",
+            "description": {
+              "content": "Creates a refund for a paid order. The order must be APPROVED, have no refund in progress, be less than 90 days old, and belong to API Checkout v2. The refund result is notified to the optional notification_url via webhook (REFUNDED / NOT_REFUNDED).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":uuid",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Unique identifier of the paid, approved order."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<string>\",\n  \"notification_url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4ee46696-f054-4585-a4d9-8b6a5dc5543a",
+              "name": "Refund initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"INITIATED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0449ee6-6c42-4d53-8e7c-f96b3d5e4d8f",
+              "name": "Invalid request payload or query string.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"request_error\",\n  \"message\": \"Invalid request payload\",\n  \"errors\": [\n    \"Invalid amount value. Amount must have only positive numbers and a single point\",\n    \"Invalid amount value. Minimum amount is 25.00\",\n    \"Invalid amount value. Maximum amount is 9999999.00\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5609ef44-8b8e-4978-b588-37be5b9b0c37",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb09246-f291-4d82-9a64-aeeb896620cd",
+              "name": "Expired token / explicit deny.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"User is not authorized to access this resource with an explicit deny\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66887a31-8774-4d92-ace6-4ab11e951fee",
+              "name": "Order not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"response_error\",\n  \"message\": \"No record found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4787207-abaf-4026-a81b-c043cb6439a6",
+              "name": "Internal error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":uuid",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Unique identifier of the paid, approved order."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"32221\",\n  \"notification_url\": \"https://your-awesome-web.com/endpoint-to-notify\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"api_error\",\n  \"message\": \"Something bad happened. Please try again\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auth.developers.ar.ua.la/v2/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c1855aa0-1732-4dd6-95d2-fe4c1ff35a24",
+    "name": "Ualá Bis API v2 Authentication Refunds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Token issuance for the Ualá Bis API Cobros Online v2. All integrations require generating an access token via a client-credentials style request (username, client_id, client_secret_id, grant_type). Credentials for both test and production environments are delivered in the Ualá Bis welcome email and in the mobile/web applications. Generated by API Evangelist from the published documentation — the provider does not publish a machine-readable spec.\n\nContact Support:\n Email: developers.ualabis@uala.com.ar",
+      "type": "text/plain"
+    }
+  }
+}

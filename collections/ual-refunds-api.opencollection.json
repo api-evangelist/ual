@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ualá Bis API v2 Authentication Refunds API",
+    "version": "2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Crear devolución (refund an approved order)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auth.developers.ar.ua.la/v2/api/orders/:uuid/refund",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the paid, approved order."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a refund for a paid order. The order must be APPROVED, have no refund in progress, be less than 90 days old, and belong to API Checkout v2. The refund result is notified to the optional notification_url via webhook (REFUNDED / NOT_REFUNDED)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
