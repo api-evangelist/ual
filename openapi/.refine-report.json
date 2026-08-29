@@ -1,18 +1,29 @@
 {
   "provider": "ual",
   "sources": [
-    "ual-authentication-api-openapi.yml",
-    "ual-orders-api-openapi.yml",
-    "ual-refunds-api-openapi.yml"
+    "_original/ual-bis-auth-v2-openapi.yml",
+    "_original/ual-bis-cobros-online-v2-openapi.yml"
   ],
   "outputs": [
     "ual-authentication-api-openapi.yml",
     "ual-orders-api-openapi.yml",
-    "ual-refunds-api-openapi.yml"
+    "ual-refunds-api-openapi.yml",
+    "ual-ual-bis-api-cobros-online-v2-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ual-bis-auth-v2-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ual-bis-cobros-online-v2-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ual-bis-cobros-online-v2-openapi.yml: tagged webhooks POST orderStatusNotification -> Ual\u00e1 Bis API Cobros Online V2",
+    "ual-bis-cobros-online-v2-openapi.yml: tagged webhooks POST refundStatusNotification -> Ual\u00e1 Bis API Cobros Online V2",
+    "ual-bis-cobros-online-v2-openapi.yml: declared missing tag: Ual\u00e1 Bis API Cobros Online V2"
+  ],
+  "skipped": [
+    "ual-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ual-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ual-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

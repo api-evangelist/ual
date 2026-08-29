@@ -112,6 +112,17 @@ apis:
     url: https://developers.ualabis.com.ar/v2
   - type: Documentation
     url: https://developers.ualabis.com.ar/v2/authentication/create
+- aid: ual:ual-ual-bis-api-cobros-online-v2-api
+  name: Ualá Ualá Bis API Cobros Online V2 API
+  description: >-
+    The Ualá Bis API Cobros Online V2 API from Ualá — 0 operation(s) for ualá bis api cobros online v2.
+  humanURL: https://developers.ualabis.com.ar/v2
+  baseURL: https://checkout.developers.ar.ua.la/v2/api
+  tags:
+  - Ualá Bis API Cobros Online V2
+  properties:
+  - type: OpenAPI
+    url: openapi/ual-ual-bis-api-cobros-online-v2-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
