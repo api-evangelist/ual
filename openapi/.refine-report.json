@@ -19,11 +19,13 @@
     "ual-bis-cobros-online-v2-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "ual-bis-cobros-online-v2-openapi.yml: tagged webhooks POST orderStatusNotification -> Ual\u00e1 Bis API Cobros Online V2",
     "ual-bis-cobros-online-v2-openapi.yml: tagged webhooks POST refundStatusNotification -> Ual\u00e1 Bis API Cobros Online V2",
-    "ual-bis-cobros-online-v2-openapi.yml: declared missing tag: Ual\u00e1 Bis API Cobros Online V2"
+    "ual-bis-cobros-online-v2-openapi.yml: declared missing tag: Ual\u00e1 Bis API Cobros Online V2",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "ual-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ual-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "ual-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "ual-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ual-ual-bis-api-cobros-online-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
