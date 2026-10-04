@@ -159,6 +159,107 @@ paths:
           $ref: '#/components/responses/ApiError'
 components:
   schemas:
+    CreateOrderRequest:
+      type: object
+      required:
+      - amount
+      - description
+      - callback_fail
+      - callback_success
+      properties:
+        amount:
+          type: string
+          description: Total amount to be charged at checkout (min 25.00, max 9999999.00).
+        description:
+          type: string
+          description: Order description shown at checkout.
+        callback_fail:
+          type: string
+          description: Redirect link on failed payment.
+        callback_success:
+          type: string
+          description: Redirect link on successful payment.
+        notification_url:
+          type: string
+          description: Status-notification webhook URL (optional).
+        external_reference:
+          type: string
+          description: Merchant reference for the order, e.g. an internal ID (optional).
+    Card:
+      type: object
+      properties:
+        holder_name:
+          type: string
+        issuer:
+          type: string
+          description: Card network/issuer label, e.g. MASTER.
+        pan:
+          type: string
+          description: Masked card number.
+        installments:
+          type: object
+          properties:
+            number:
+              type: integer
+            total:
+              type: number
+            financial_cost:
+              type: number
+            value_per_installment:
+              type: number
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+          - request_error
+          - response_error
+          - api_error
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+    Tax:
+      type: object
+      properties:
+        percentage:
+          type: string
+        held_tax:
+          type: string
+        type:
+          type: string
+    OrderList:
+      type: object
+      properties:
+        last_search_key:
+          type: string
+          description: Cursor to request the next page.
+        has_more_items:
+          type: boolean
+          description: Whether more items remain to be returned.
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    Commission:
+      type: object
+      properties:
+        amount:
+          type: string
+        percentage:
+          type: string
+        type:
+          type: string
     Order:
       type: object
       properties:
@@ -198,117 +299,6 @@ components:
         updated_date:
           type: string
           format: date-time
-    StatusChange:
-      type: object
-      properties:
-        new_status:
-          type: string
-        old_status:
-          type: string
-        updated_date:
-          type: string
-          format: date-time
-    Customer:
-      type: object
-      properties:
-        name:
-          type: string
-        card:
-          $ref: '#/components/schemas/Card'
-    CreateOrderRequest:
-      type: object
-      required:
-      - amount
-      - description
-      - callback_fail
-      - callback_success
-      properties:
-        amount:
-          type: string
-          description: Total amount to be charged at checkout (min 25.00, max 9999999.00).
-        description:
-          type: string
-          description: Order description shown at checkout.
-        callback_fail:
-          type: string
-          description: Redirect link on failed payment.
-        callback_success:
-          type: string
-          description: Redirect link on successful payment.
-        notification_url:
-          type: string
-          description: Status-notification webhook URL (optional).
-        external_reference:
-          type: string
-          description: Merchant reference for the order, e.g. an internal ID (optional).
-    Tax:
-      type: object
-      properties:
-        percentage:
-          type: string
-        held_tax:
-          type: string
-        type:
-          type: string
-    Commission:
-      type: object
-      properties:
-        amount:
-          type: string
-        percentage:
-          type: string
-        type:
-          type: string
-    Card:
-      type: object
-      properties:
-        holder_name:
-          type: string
-        issuer:
-          type: string
-          description: Card network/issuer label, e.g. MASTER.
-        pan:
-          type: string
-          description: Masked card number.
-        installments:
-          type: object
-          properties:
-            number:
-              type: integer
-            total:
-              type: number
-            financial_cost:
-              type: number
-            value_per_installment:
-              type: number
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-          enum:
-          - request_error
-          - response_error
-          - api_error
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            type: string
-    OrderList:
-      type: object
-      properties:
-        last_search_key:
-          type: string
-          description: Cursor to request the next page.
-        has_more_items:
-          type: boolean
-          description: Whether more items remain to be returned.
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
     CreateOrderResponse:
       type: object
       properties:
@@ -332,38 +322,17 @@ components:
               type: string
             failed:
               type: string
+    StatusChange:
+      type: object
+      properties:
+        new_status:
+          type: string
+        old_status:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
   responses:
-    Unauthorized:
-      description: Missing or invalid credentials.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-          example:
-            message: Unauthorized
-    Forbidden:
-      description: Expired token / explicit deny.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
-          example:
-            message: User is not authorized to access this resource with an explicit deny
-    ApiError:
-      description: Internal error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: api_error
-            message: Something bad happened. Please try again
     RequestError:
       description: Invalid request payload or query string.
       content:
@@ -377,6 +346,37 @@ components:
             - Invalid amount value. Amount must have only positive numbers and a single point
             - Invalid amount value. Minimum amount is 25.00
             - Invalid amount value. Maximum amount is 9999999.00
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          example:
+            message: Unauthorized
+    ApiError:
+      description: Internal error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: api_error
+            message: Something bad happened. Please try again
+    Forbidden:
+      description: Expired token / explicit deny.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          example:
+            message: User is not authorized to access this resource with an explicit deny
   securitySchemes:
     bearerAuth:
       type: http
