@@ -34,3 +34,132 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: ual-bcra-entidades-financieras-authorised-banks-and-financial-companies
+  label: BCRA Entidades Financieras (authorised banks and financial companies)
+  partner_name: BCRA Entidades Financieras (authorised banks and financial companies)
+  category: Argentine financial-entity authorisation (BCRA)
+  type: register
+  channel: regulator-register
+  evidence: https://www.bcra.gob.ar/entidades-financieras/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: BCRA Entidades Financieras (authorised banks and financial companies)
+    spec_file: null
+    standard: null
+    role: licensed-participant
+    registrations:
+    - registered_name: UALA BANK S.A.U.
+      licences:
+      - entidad financiera (banco)
+      register_country: AR
+      matched_domain: uala.com.ar
+      matched_by: domain
+      register_id: BCRA entidad 00384
+      group: Bancos Locales de Capital Nacional
+    signal_note: 'participation only: a regulator registration / authorisation; no API conformance is published
+      by this register'
+    detected_by: sweep-argentina-fintech-registers.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: ual-bcra-registro-de-proveedores-de-servicios-de-pago-psp
+  label: BCRA Registro de Proveedores de Servicios de Pago (PSP)
+  partner_name: BCRA Registro de Proveedores de Servicios de Pago (PSP)
+  category: Argentine payment-service-provider registration (BCRA)
+  type: register
+  channel: regulator-register
+  evidence: https://www.bcra.gob.ar/registro-de-proveedores-de-servicios-de-pago/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: BCRA Registro de Proveedores de Servicios de Pago (PSP)
+    spec_file: null
+    standard: null
+    role: licensed-participant
+    registrations:
+    - registered_name: ALAU TECNOLOGIA S. A. U.
+      licences:
+      - Proveedor de Servicio de Pago que ofrece Cuenta de Pago
+      - Aceptador
+      - Agregador
+      register_country: AR
+      matched_domain: uala.com.ar
+      matched_by: domain
+      brand: Ualá
+      register_id: CUIT 30715421700
+      identity: wikidata Q43579727 'Ualá' P856 https://www.uala.com.ar/
+    signal_note: 'participation only: a regulator registration / authorisation; no API conformance is published
+      by this register'
+    detected_by: sweep-argentina-fintech-registers.py
+    detected: '2026-10-21'
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  status: not-a-workflow
+  arazzo: null
+- slug: ual-c-mara-argentina-fintech-member-list
+  label: Cámara Argentina Fintech (member list)
+  partner_name: Cámara Argentina Fintech (member list)
+  category: Argentine fintech industry association membership
+  type: register
+  channel: standard-directory
+  evidence: https://camarafintech.org/miembros/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Cámara Argentina Fintech (member list)
+    spec_file: null
+    standard: null
+    role: camara-fintech-member
+    registrations:
+    - registered_name: Uala
+      licences:
+      - Cámara Argentina Fintech member
+      register_country: AR
+      matched_domain: uala.com.ar
+      matched_by: domain
+      register_id: camarafintech.org socio 674
+      categories:
+      - entidad-financiera-fintech
+    signal_note: 'participation only: membership of the national fintech association (listing is not conformance;
+      the member tier is carried in partner_tier)'
+    detected_by: sweep-argentina-fintech-registers.py
+    detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: ual-cnv-registro-de-agentes-capital-markets-agents
+  label: CNV Registro de Agentes (capital-markets agents)
+  partner_name: CNV Registro de Agentes (capital-markets agents)
+  category: Argentine capital-markets agent registration (CNV)
+  type: register
+  channel: regulator-register
+  evidence: https://www.cnv.gov.ar/SitioWeb/RegistrosPublicos/Agentes
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CNV Registro de Agentes (capital-markets agents)
+    spec_file: null
+    standard: null
+    role: licensed-participant
+    registrations:
+    - registered_name: UALA BANK S. A. U.
+      licences:
+      - ALYC - Integral
+      register_country: AR
+      matched_domain: uala.com.ar
+      matched_by: domain
+      register_id: CUIT 30715654632
+    - registered_name: UALÁ INVERSIONES S.A.U.
+      licences:
+      - ALYC - Integral
+      register_country: AR
+      matched_domain: uala.com.ar
+      matched_by: domain
+      register_id: CUIT 30717096246
+      identity: institution e-mail domain uala.com.ar stated in the register (labelled provenance step)
+    signal_note: 'participation only: a regulator registration / authorisation; no API conformance is published
+      by this register'
+    detected_by: sweep-argentina-fintech-registers.py
+    detected: '2026-10-21'
+    identity_source: institution e-mail domain stated in the register (labelled provenance step)
+  status: not-a-workflow
+  arazzo: null
