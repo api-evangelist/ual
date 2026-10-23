@@ -23,6 +23,9 @@ checked:
 - https://www.cnv.gov.ar/SitioWeb/RegistrosPublicos/Agentes
 - https://www.cnv.gov.ar/SitioWeb/RegistrosPublicos/Psav
 - https://www.coelsa.com.ar/
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
 summary: null
 marketplace_apps: []
 edges:
@@ -186,4 +189,43 @@ edges:
     identity_source: institution e-mail domain stated in the register (labelled provenance step)
   detected_by: sweep-argentina-fintech-registers.py
   first_seen: '2026-10-21'
+- partner_name: Packagist
+  partner: packagist
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (PHP)
+  evidence: https://packagist.org/packages/uala-bis/ualabis-magento
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: uala-bis/ualabis-magento
+      version: 1.0.0
+      released: '2023-04-20'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/uala-bis/ualabis-magento
+      repo_leg: github-org:uala-developers
+      publisher_leg: email:uala.com.ar
+      matched_by: domain
+    - name: uala-bis/ualabis-php
+      version: 1.0.1
+      released: '2023-04-21'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/uala-bis/ualabis-php
+      repo_leg: github-org:uala-developers
+      publisher_leg: email:uala.com.ar
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 templates: []

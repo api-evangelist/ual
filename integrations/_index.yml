@@ -163,3 +163,43 @@
     identity_source: institution e-mail domain stated in the register (labelled provenance step)
   status: not-a-workflow
   arazzo: null
+- slug: ual-packagist
+  label: Packagist
+  partner: packagist
+  partner_name: Packagist
+  category: official SDK (PHP)
+  type: register
+  channel: package-registry
+  evidence: https://packagist.org/packages/uala-bis/ualabis-magento
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Packagist (public registry JSON)
+    spec_file: null
+    language: PHP
+    packages:
+    - name: uala-bis/ualabis-magento
+      version: 1.0.0
+      released: '2023-04-20'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/uala-bis/ualabis-magento
+      repo_leg: github-org:uala-developers
+      publisher_leg: email:uala.com.ar
+      matched_by: domain
+    - name: uala-bis/ualabis-php
+      version: 1.0.1
+      released: '2023-04-21'
+      released_field: time
+      lapsed: true
+      page: https://packagist.org/packages/uala-bis/ualabis-php
+      repo_leg: github-org:uala-developers
+      publisher_leg: email:uala.com.ar
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
